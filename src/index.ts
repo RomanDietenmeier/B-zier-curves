@@ -33,6 +33,15 @@
     canvasContext.fill();
   }
 
+  function drawLineBetweenPoints(lhs: Point, rhs: Point, color?: string): void {
+    canvasContext.beginPath();
+    canvasContext.moveTo(lhs.x, lhs.y);
+    canvasContext.lineTo(rhs.x, rhs.y);
+    canvasContext.strokeStyle = color ?? "#000";
+    canvasContext.closePath();
+    canvasContext.stroke();
+  }
+
   function addBezierPointAndDraw(x: number, y: number): void {
     if (bezierPoints.length < 1) drawClearRect();
     bezierPoints.push({ x, y });
@@ -98,13 +107,14 @@
   function onConfirm(contextMenuEvent: MouseEvent): void {
     contextMenuEvent.preventDefault();
     if (bezierPoints.length < 2) return;
-    for (let t = 0; t <= 1; t += 0.007) {
+    let previousPoint = bezierPoints[0];
+    for (let t = 0; t <= 1; t += 1 / 300) {
       const point = calcBezierY(t);
-
+      drawLineBetweenPoints(previousPoint, point, "#aaa");
       drawDot(point.x, point.y);
+      previousPoint = point;
     }
-    console.log(bezierPoints.slice());
-
+    drawLineBetweenPoints(previousPoint, bezierPoints[bezierPoints.length - 1]);
     bezierPoints.splice(0); //clear Array
   }
 
