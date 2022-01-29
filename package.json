@@ -1,0 +1,23 @@
+{
+  "name": "bezier-curve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "webpack",
+    "watch":"webpack --watch",
+    "serve":"cd dist && live-server",
+    "start":"npm run  && npm-run-all --parallel watch serve"
+  },
+  "author": "Roman Dietenmeier",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "npm-run-all": "^4.1.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
